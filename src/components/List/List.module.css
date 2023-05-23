@@ -11,7 +11,7 @@
   margin: 0.5rem;
   padding: 0.5rem;
   width: 70%;
-  background-color: grey;
+  background-color: rgb(13, 119, 149);
   color: white;
   display: flex;
   justify-content: space-around;
@@ -20,6 +20,7 @@
 .title {
   text-align: center;
   padding: 1rem;
+  color: white;
 }
 .h1 {
   display: flex;
@@ -27,4 +28,5 @@
 }
 .span {
   margin: 1rem;
+  color: white;
 }
