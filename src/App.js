@@ -1,10 +1,9 @@
-import "./App.css";
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
-import ContainerApp from "./components/ContainerAp/ContainerApp";
-/* import useLocalstorageState from "use-local-storage-state"; */
+import useLocalstorageState from "use-local-storage-state";
 import { uid } from "uid";
 import { useEffect, useState } from "react";
+import classes from "./App.module.css";
 
 const initial = [
   { id: "99", name: "walking", isGoodWeatherActivity: true },
@@ -12,10 +11,10 @@ const initial = [
 ];
 
 const App = () => {
-  /*  const [activities, setActivities] = useState("activities", {
+  const [activities, setActivities] = useLocalstorageState("activities", {
     defaultValue: initial,
-  }); */
-  const [activities, setActivities] = useState(initial);
+  });
+  /* const [activities, setActivities] = useState(initial); */
   const [weather, setWeather] = useState([
     {
       location: "Europe",
@@ -25,17 +24,24 @@ const App = () => {
     },
   ]);
 
+  /*  let mooveBackgroundImage = "";
+  if(weather.condition === "🌤️"){
+    mooveBackgroundImage = ""
+  } */
+
   const handleAddActivity = (newActivity, isWeather) => {
     setActivities([
       { name: newActivity, id: uid(), isGoodWeatherActivity: isWeather },
       ...activities,
     ]);
   };
-
-  const filterList = activities.filter(
-    (element) => element.isGoodWeatherActivity === weather.isGoodWeather
-  );
   let headline = "";
+
+  setActivities(
+    activities.filter(
+      (element) => element.isGoodWeatherActivity === weather.isGoodWeather
+    )
+  );
   if (weather.isGoodWeather) {
     headline = "The weather is awesome!Go outside and:";
   } else {
@@ -63,19 +69,23 @@ const App = () => {
   }, [weather]);
 
   const handleDeleteActivity = (id) => {
-    filterList.filter((element) => element.id !== id);
+    setActivities(activities.filter((element) => element.id !== id));
   };
 
   return (
-    <ContainerApp>
+    <div
+      className={
+        classes.container
+      } /*  style={{backgroundImage: url(MyBackgroundImage)}} */
+    >
       <List
-        activities={filterList}
+        activities={activities}
         headline={headline}
         weather={weather}
         onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleAddActivity} />
-    </ContainerApp>
+    </div>
   );
 };
 

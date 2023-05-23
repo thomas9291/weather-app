@@ -5,11 +5,13 @@
 }
 .header {
   text-align: center;
+  color: white;
 }
 .btn,
 .label,
 .input {
   padding: 0.6rem;
+  color: white;
 }
 .btn {
   border-radius: 1rem;
@@ -18,4 +20,5 @@
   color: white;
   box-shadow: 5px 2.5px 2.5px grey;
   margin-bottom: 1em;
+  padding: 0.8rem;
 }
