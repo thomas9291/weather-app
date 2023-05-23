@@ -18,3 +18,10 @@
   text-align: center;
   padding: 1rem;
 }
+.h1 {
+  display: flex;
+  justify-content: flex-start;
+}
+.span {
+  margin: 1rem;
+}
