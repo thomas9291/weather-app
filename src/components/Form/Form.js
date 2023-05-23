@@ -17,31 +17,37 @@ const Form = ({ onAddActivity }) => {
 
   return (
     <>
-      <h2 className={classes.header}>Add new Activity:</h2>
       <form onSubmit={handlesubmit} className={classes.formContainer}>
-        <label className={classes.label} htmlFor="name">
-          Name
-        </label>
-        <input
-          className={classes.input}
-          type="text"
-          id="name"
-          name="name"
-          required
-        />
-        <br />
-        <label className={classes.label} htmlFor="isGoodWeatherActivity">
-          Good-weather activity
-        </label>
-        <input
-          className={classes.input}
-          type="checkbox"
-          id="isGoodWeatherActivity"
-          name="isGoodWeatherActivity"
-        />
-        <button className={classes.btn} type="submit">
-          Submit
-        </button>
+        <fieldset className={classes.fieldset}>
+          <legend className={classes.header}>Add new Activity:</legend>
+          <div>
+            <label className={classes.label} htmlFor="name">
+              Name:
+            </label>
+            <input
+              className={classes.input}
+              type="text"
+              id="name"
+              name="name"
+              required
+            />
+          </div>
+          <br />
+          <div>
+            <label className={classes.label} htmlFor="isGoodWeatherActivity">
+              Good-weather activity
+            </label>
+            <input
+              className={classes.input}
+              type="checkbox"
+              id="isGoodWeatherActivity"
+              name="isGoodWeatherActivity"
+            />
+          </div>
+          <button className={classes.btn} type="submit">
+            Submit
+          </button>
+        </fieldset>
       </form>
     </>
   );
