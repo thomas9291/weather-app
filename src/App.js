@@ -56,15 +56,24 @@ const App = () => {
     }
     const timer = setInterval(() => {
       startFetching();
-    }, 50000);
+    }, 5000);
     return () => {
       clearInterval(timer);
     };
   }, [weather]);
 
+  const handleDeleteActivity = (id) => {
+    filterList.filter((element) => element.id !== id);
+  };
+
   return (
     <ContainerApp>
-      <List activities={filterList} headline={headline} weather={weather} />
+      <List
+        activities={filterList}
+        headline={headline}
+        weather={weather}
+        onDeleteActivity={handleDeleteActivity}
+      />
       <Form onAddActivity={handleAddActivity} />
     </ContainerApp>
   );

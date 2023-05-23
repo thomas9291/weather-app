@@ -1,6 +1,8 @@
 import classes from "./List.module.css";
 
-const List = ({ activities, headline, weather }) => {
+import Button from "../Button/Button";
+
+const List = ({ activities, headline, weather, onDeleteActivity }) => {
   return (
     <>
       <h1 className={classes.h1}>
@@ -12,6 +14,7 @@ const List = ({ activities, headline, weather }) => {
         {activities.map((element) => (
           <li key={element.id} className={classes.listItem}>
             {element.name}
+            <Button onClick={() => onDeleteActivity(element.id)}>❌</Button>
           </li>
         ))}
       </ul>
