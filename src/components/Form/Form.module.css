@@ -8,8 +8,7 @@
   color: white;
 }
 .btn,
-.label,
-.input {
+.label {
   padding: 0.6rem;
   color: white;
 }
@@ -21,4 +20,8 @@
   box-shadow: 5px 2.5px 2.5px grey;
   margin-bottom: 1em;
   padding: 0.8rem;
+}
+.fieldset {
+  padding: 1rem;
+  margin: 1rem;
 }
