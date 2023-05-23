@@ -25,24 +25,6 @@ const App = () => {
     },
   ]);
 
-  /*   let mooveBackgroundImage;
-  if (weather.condition === "🌤️") {
-    mooveBackgroundImage = "
-      https://images.unsplash.com/photo-1530908295418-a12e326966ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTF8fGNsaWRlJTIwd2VhdGhlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60
-    ";
-  }
-  if (weather.condition === "🌨️") {
-    mooveBackgroundImage =
-      "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmFpbmluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60";
-  }
-  if (weather.condition === "☀️") {
-    mooveBackgroundImage =
-      "https://images.unsplash.com/photo-1597316342034-39cb9003f5bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHN1bnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60";
-  } else {
-    mooveBackgroundImage =
-      "https://images.unsplash.com/photo-1544235653-a313b8a430d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fHNub3d8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60";
-  }
- */
   const handleAddActivity = (newActivity, isWeather) => {
     setActivities([
       { name: newActivity, id: uid(), isGoodWeatherActivity: isWeather },
@@ -74,7 +56,7 @@ const App = () => {
     }
     const timer = setInterval(() => {
       startFetching();
-    }, 5000);
+    }, 1000);
     return () => {
       clearInterval(timer);
     };
@@ -83,13 +65,27 @@ const App = () => {
   const handleDeleteActivity = (id) => {
     setActivities(activities.filter((element) => element.id !== id));
   };
+  let wetter = "";
+  const sunnyurl =
+    "https://images.unsplash.com/photo-1534570122623-99e8378a9aa7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHN1bW1lcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60";
+  const cloud =
+    "https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2xvdWR5fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60";
+
+  const raining =
+    "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmFpbmluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60";
+
+  if (weather.condition === "☀️") {
+    wetter = sunnyurl;
+  } else if (weather.condition === "🌤️") {
+    wetter = cloud;
+  } else {
+    wetter = raining;
+  }
 
   return (
     <div
       className={classes.container}
-      /* style={{
-        backgroundImage: mooveBackgroundImage,
-      }} */
+      style={{ backgroundImage: `url(${wetter})` }}
     >
       <List
         activities={check}
