@@ -1,14 +1,17 @@
 import classes from "./List.module.css";
 
-const List = ({ activities }) => {
+const List = ({ activities, headline }) => {
   return (
-    <ul className={classes.liContainer}>
-      {activities.map((element) => (
-        <li key={element.id} className={classes.listItem}>
-          {element.name}
-        </li>
-      ))}
-    </ul>
+    <>
+      <h3 className={classes.title}>{headline}</h3>
+      <ul className={classes.liContainer}>
+        {activities.map((element) => (
+          <li key={element.id} className={classes.listItem}>
+            {element.name}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

@@ -14,3 +14,7 @@
   background-color: grey;
   color: white;
 }
+.title {
+  text-align: center;
+  padding: 1rem;
+}
