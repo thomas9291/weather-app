@@ -29,7 +29,8 @@
 }
 .h1 {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
+  align-items: center;
 }
 .span {
   margin: 1rem;
@@ -49,4 +50,14 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+.date {
+  color: white;
+  font-size: large;
+}
+.btn {
+  border-radius: 0.6rem;
+}
+.btn::active {
+  animation: 0.7s ease-out normal slidein;
 }

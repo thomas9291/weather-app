@@ -1,5 +1,6 @@
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
+import SelectorCountry from "./components/SelectorCountry/SelectorCountry";
 import useLocalstorageState from "use-local-storage-state";
 import { uid } from "uid";
 import { useEffect, useState } from "react";
@@ -24,6 +25,7 @@ const App = () => {
       isGoodWeather: true,
     },
   ]);
+  const [location, setLocation] = useState("europe");
 
   const handleAddActivity = (newActivity, isWeather) => {
     setActivities([
@@ -41,13 +43,15 @@ const App = () => {
   } else {
     headline = "Bad weather outside!Here's what you can do now:";
   }
+  const date = new Date();
+  const actualeDate = date.toLocaleDateString();
 
   /*  const URL = "https://example-apis.vercel.app/api/weather"; */
 
   useEffect(() => {
     async function startFetching() {
       const response = await fetch(
-        "https://example-apis.vercel.app/api/weather/europe"
+        `https://example-apis.vercel.app/api/weather/${location}`
       );
       const result = await response.json();
 
@@ -60,7 +64,7 @@ const App = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [weather]);
+  }, [weather, location]);
 
   const handleDeleteActivity = (id) => {
     setActivities(activities.filter((element) => element.id !== id));
@@ -74,10 +78,15 @@ const App = () => {
   const raining =
     "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmFpbmluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60";
 
+  const snow =
+    "https://images.unsplash.com/photo-1517166357932-d20495eeffd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c25vd2luZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60";
+
   if (weather.condition === "☀️") {
     wetter = sunnyurl;
   } else if (weather.condition === "🌤️") {
     wetter = cloud;
+  } else if (weather.condition === "🌨️") {
+    wetter = snow;
   } else {
     wetter = raining;
   }
@@ -87,7 +96,9 @@ const App = () => {
       className={classes.container}
       style={{ backgroundImage: `url(${wetter})` }}
     >
+      <SelectorCountry location={location} setLocation={setLocation} />
       <List
+        date={actualeDate}
         activities={check}
         headline={headline}
         weather={weather}
